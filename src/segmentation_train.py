@@ -22,15 +22,15 @@ def train(data_file, classes_file):
         shutil.rmtree(weights_save_dir)
     Path(weights_save_dir).mkdir(parents=True, exist_ok=True)
 
-    DATA_DIR = data_dict['data_dir']
-    x_train_dir = os.path.join(DATA_DIR, data_dict['train_dir'])
-    y_train_dir = os.path.join(DATA_DIR, data_dict['trainannot_dir'])
-    x_valid_dir = os.path.join(DATA_DIR, data_dict['val_dir'])
-    y_valid_dir = os.path.join(DATA_DIR, data_dict['valannot_dir'])
+    # DATA_DIR = data_dict['data_dir']
+    x_train_dir = data_dict['train_dir']
+    y_train_dir = data_dict['trainannot_dir']
+    x_valid_dir = data_dict['val_dir']
+    y_valid_dir = data_dict['valannot_dir']
 
     # model init
     ENCODER = data_dict['encoder']
-    ENCODER_WEIGHTS = data_dict['encoder_weights']
+    ENCODER_WEIGHTS = 'imagenet'
     ACTIVATION = data_dict['activation']  # could be None for logits or 'softmax2d' for multiclass segmentation
     DEVICE = data_dict['device']
 
@@ -62,9 +62,8 @@ def train(data_file, classes_file):
         classes=CLASSES,
     )
 
-    train_loader = DataLoader(train_dataset, batch_size=int(data_dict['batch_size']), shuffle=True,
-                              num_workers=int(data_dict['num_workers']))
-    valid_loader = DataLoader(valid_dataset, batch_size=1, shuffle=False, num_workers=4)
+    train_loader = DataLoader(train_dataset, batch_size=int(data_dict['batch_size']), shuffle=True, num_workers=0)
+    valid_loader = DataLoader(valid_dataset, batch_size=1, shuffle=False, num_workers=0)
 
     loss = smp.utils.losses.JaccardLoss()
     metrics = [
