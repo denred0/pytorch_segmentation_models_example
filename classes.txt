@@ -1,0 +1,12 @@
+sky
+building
+pole
+road
+pavement
+tree
+signsymbol
+fence
+car
+pedestrian
+bicyclist
+unlabelled

@@ -1,0 +1,19 @@
+data_dir = data
+train_dir = train
+trainannot_dir = trainannot
+val_dir = val
+valannot_dir = valannot
+test_dir = test
+testannot_dir = testannot
+
+encoder = se_resnext101_32x4d
+encoder_weights = imagenet
+activation = sigmoid
+device = cuda
+learning_rate = 0.0001
+batch_size = 8
+num_workers = 1
+epoch = 50
+
+train_save_weights_dir = weights
+prediction_dir = prediction
